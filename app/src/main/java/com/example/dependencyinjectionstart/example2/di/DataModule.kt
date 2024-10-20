@@ -10,21 +10,12 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class DataModule(private val context: Context) {
+interface DataModule {
 
-    @Provides
-    fun provideContext(): Context {
-        return context
-    }
+    @Binds
+    fun bindLocalDataSource(impl: ExampleLocalDataSourceImpl): ExampleLocalDataSource
 
-    @Provides
-    fun bindLocalDataSource(impl: ExampleLocalDataSourceImpl): ExampleLocalDataSource {
-        return impl
-    }
-
-    @Provides
-    fun bindRemoteDataSource(impl: ExampleRemoteDataSourceImpl): ExampleRemoteDataSource {
-        return impl
-    }
+    @Binds
+    fun bindRemoteDataSource(impl: ExampleRemoteDataSourceImpl): ExampleRemoteDataSource
 
 }
